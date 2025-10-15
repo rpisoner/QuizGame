@@ -1,0 +1,70 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="200dp"
+    android:height="200dp"
+    android:viewportWidth="200"
+    android:viewportHeight="200">
+
+    <!-- Fondo del espacio -->
+    <path
+        android:fillColor="#0D1B2A"
+        android:pathData="M0,0 L200,0 L200,200 L0,200 Z"/>
+
+    <!-- Planeta Saturno -->
+    <path
+        android:fillColor="#EAD6A8"
+        android:pathData="M60,100 a40,40 0 1,0 80,0 a40,40 0 1,0 -80,0"/>
+
+    <!-- Anillos de Saturno (externos) -->
+    <path
+        android:strokeColor="#C4A77D"
+        android:strokeWidth="4"
+        android:pathData="M40,100 Q100,88 160,100"/>
+
+    <!-- Anillos de Saturno (medios) -->
+    <path
+        android:strokeColor="#D4B88D"
+        android:strokeWidth="3"
+        android:pathData="M45,98 Q100,87 155,98"/>
+
+    <!-- Anillos de Saturno (internos) -->
+    <path
+        android:strokeColor="#C4A77D"
+        android:strokeWidth="2"
+        android:pathData="M50,103 Q100,94 150,103"/>
+
+    <!-- Sombra en el planeta -->
+    <path
+        android:fillColor="#B8A785"
+        android:fillAlpha="0.4"
+        android:pathData="M80,100 a20,20 0 1,0 40,0 a20,20 0 1,0 -40,0"/>
+
+    <!-- Estrellas pequeñas como paths -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M20,30 m-1.5,0 a1.5,1.5 0 1,0 3,0 a1.5,1.5 0 1,0 -3,0"/>
+
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M180,40 m-1,0 a1,1 0 1,0 2,0 a1,1 0 1,0 -2,0"/>
+
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M30,170 m-1,0 a1,1 0 1,0 2,0 a1,1 0 1,0 -2,0"/>
+
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M170,160 m-1.5,0 a1.5,1.5 0 1,0 3,0 a1.5,1.5 0 1,0 -3,0"/>
+
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M160,20 m-1,0 a1,1 0 1,0 2,0 a1,1 0 1,0 -2,0"/>
+
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M40,50 m-0.8,0 a0.8,0.8 0 1,0 1.6,0 a0.8,0.8 0 1,0 -1.6,0"/>
+
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M150,180 m-0.8,0 a0.8,0.8 0 1,0 1.6,0 a0.8,0.8 0 1,0 -1.6,0"/>
+</vector>
+
