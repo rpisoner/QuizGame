@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -74,9 +75,9 @@ public class QuizActivity extends AppCompatActivity {
 
         // Pregunta 2: Spinner - Series famosas
         questions.add(new Question(
-                "¿Cuál es el nombre real de Walter White en 'Breaking Bad'?",
-                Arrays.asList("Bryan Cranston", "Aaron Paul", "Heisenberg", "Walter Hartwell White"),
-                3,
+                "¿Cuál es el nombre del actor del personaje Walter White en 'Breaking Bad'?",
+                Arrays.asList("Bryan Cranston", "Aaron Paul", "Heisenberg García", "Tom Cruise"),
+                0,
                 Question.ControlType.SPINNER
         ));
 
@@ -104,6 +105,56 @@ public class QuizActivity extends AppCompatActivity {
                 Arrays.asList("1917", "Joker", "Parasite", "Once Upon a Time in Hollywood"),
                 2,
                 Question.ControlType.SPINNER
+        ));
+
+        // Pregunta 6: IMAGE_GRID - Adivina el póster
+        questions.add(new Question(
+                "¿Cual de estas imagenes pertenece a la saga 'Star Wars'?",
+                null, // Sin imagen principal para la pregunta
+                null, // Sin opciones de texto
+                Arrays.asList(R.drawable.death_star, R.drawable.spock, R.drawable.jhon, R.drawable.casadepapelgood),
+                0, // Índice de la respuesta correcta (p. ej., el primer póster)
+                Question.ControlType.IMAGE_GRID
+        ));
+
+        // Pregunta 7: IMAGE_GRID - Personajes de Pixar
+        questions.add(new Question(
+                "¿Cuál de estos personajes es 'Woody' de Toy Story?",
+                null,
+                null,
+                Arrays.asList(R.drawable.buzzgood, R.drawable.woody, R.drawable.jessietoystory, R.drawable.perro),
+                1,
+                Question.ControlType.IMAGE_GRID
+        ));
+
+        // Pregunta 8: IMAGE_GRID - Naves espaciales
+        questions.add(new Question(
+                "Selecciona la nave 'Halcón Milenario'.",
+                null,
+                null,
+                Arrays.asList(R.drawable.death_star, R.drawable.death_star, R.drawable.death_star, R.drawable.death_star),
+                3,
+                Question.ControlType.IMAGE_GRID
+        ));
+
+        // Pregunta 9: IMAGE_GRID - Objetos icónicos
+        questions.add(new Question(
+                "¿Qué objeto es la 'Varita de Saúco' de Harry Potter?",
+                null,
+                null,
+                Arrays.asList(R.drawable.death_star, R.drawable.death_star, R.drawable.woody, R.drawable.death_star),
+                2,
+                Question.ControlType.IMAGE_GRID
+        ));
+
+        // Pregunta 10: IMAGE_GRID - Actrices famosas
+        questions.add(new Question(
+                "¿Quién de ellas es Scarlett Johansson?",
+                null,
+                null,
+                Arrays.asList(R.drawable.death_star, R.drawable.death_star, R.drawable.death_star, R.drawable.death_star),
+                0,
+                Question.ControlType.IMAGE_GRID
         ));
     }
 
@@ -143,6 +194,9 @@ public class QuizActivity extends AppCompatActivity {
                 break;
             case LIST_VIEW:
                 createListView(question);
+                break;
+            case IMAGE_GRID:
+                createImageGrid(question);
                 break;
         }
     }
@@ -267,6 +321,56 @@ public class QuizActivity extends AppCompatActivity {
         controlContainer.addView(listView);
     }
 
+    private void createImageGrid(Question question) {
+        GridLayout gridLayout = new GridLayout(this);
+        gridLayout.setColumnCount(2); // 2 columnas
+        gridLayout.setRowCount(2);    // 2 filas para 4 imágenes
+        gridLayout.setUseDefaultMargins(true);
+
+        LinearLayout.LayoutParams gridParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+        );
+        gridParams.setMargins(16, 8, 16, 8);
+        gridLayout.setLayoutParams(gridParams);
+
+        List<Integer> imageIds = question.getOptionImages();
+        if (imageIds == null) return;
+
+        for (int i = 0; i < imageIds.size(); i++) {
+            ImageView imageView = new ImageView(this);
+            imageView.setImageResource(imageIds.get(i));
+            imageView.setId(i);
+            imageView.setAdjustViewBounds(true);
+            imageView.setPadding(8, 8, 8, 8);
+            imageView.setBackgroundColor(0xFF2C2C2E); // Gris oscuro
+
+            GridLayout.LayoutParams params = new GridLayout.LayoutParams();
+            params.width = 0;
+            params.height = GridLayout.LayoutParams.WRAP_CONTENT;
+            params.columnSpec = GridLayout.spec(GridLayout.UNDEFINED, 1f);
+            params.rowSpec = GridLayout.spec(GridLayout.UNDEFINED, 1f);
+            imageView.setLayoutParams(params);
+
+            final int index = i;
+            imageView.setOnClickListener(v -> {
+                selectedAnswer = index;
+                for (int j = 0; j < gridLayout.getChildCount(); j++) {
+                    View child = gridLayout.getChildAt(j);
+                    if (j == selectedAnswer) {
+                        child.setBackgroundColor(0xFFDC143C); // Rojo cinema
+                    } else {
+                        child.setBackgroundColor(0xFF2C2C2E); // Gris oscuro
+                    }
+                }
+            });
+
+            gridLayout.addView(imageView);
+        }
+        controlContainer.addView(gridLayout);
+    }
+
+
     private void checkAnswer() {
         if (selectedAnswer == -1) {
             Toast.makeText(this, "Por favor, selecciona una respuesta", Toast.LENGTH_SHORT).show();
@@ -280,9 +384,15 @@ public class QuizActivity extends AppCompatActivity {
             score += POINTS_CORRECT;
             showFeedbackDialog("¡Correcto!", "¡Excelente! Has ganado " + POINTS_CORRECT + " puntos.", true);
         } else {
+            String correctAnswerText;
+            if (question.getControlType() == Question.ControlType.IMAGE_GRID) {
+                correctAnswerText = "la opción " + (question.getCorrectAnswerIndex() + 1);
+            } else {
+                correctAnswerText = question.getOptions().get(question.getCorrectAnswerIndex());
+            }
             score += POINTS_INCORRECT;
             showFeedbackDialog("Incorrecto", "La respuesta correcta era: " +
-                    question.getOptions().get(question.getCorrectAnswerIndex()) +
+                    correctAnswerText +
                     "\nSe han restado " + Math.abs(POINTS_INCORRECT) + " puntos.", false);
         }
 
@@ -294,16 +404,12 @@ public class QuizActivity extends AppCompatActivity {
         builder.setTitle(title);
         builder.setMessage(message);
 
-        if (isCorrect) {
-            builder.setPositiveButton("Continuar", (dialog, which) -> {
-                currentQuestionIndex++;
-                displayQuestion();
-            });
-        } else {
-            builder.setPositiveButton("Continuar", (dialog, which) -> {
-                currentQuestionIndex++;
-                displayQuestion();
-            });
+        builder.setPositiveButton("Continuar", (dialog, which) -> {
+            currentQuestionIndex++;
+            displayQuestion();
+        });
+
+        if (!isCorrect) {
             builder.setNegativeButton("Reiniciar", (dialog, which) -> restartGame());
         }
 
