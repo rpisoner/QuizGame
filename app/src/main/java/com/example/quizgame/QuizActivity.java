@@ -64,44 +64,44 @@ public class QuizActivity extends AppCompatActivity {
     private void initializeQuestions() {
         questions = new ArrayList<>();
 
-        // Pregunta 1: RadioButton - Texto simple
+        // Pregunta 1: RadioButton - Películas clásicas
         questions.add(new Question(
-                "¿Cuál es la capital de Francia?",
-                Arrays.asList("Londres", "Berlín", "París", "Madrid"),
-                2,
+                "¿Qué actor interpretó al Joker en 'The Dark Knight' (2008)?",
+                Arrays.asList("Joaquin Phoenix", "Heath Ledger", "Jack Nicholson", "Jared Leto"),
+                1,
                 Question.ControlType.RADIO_BUTTON
         ));
 
-        // Pregunta 2: Spinner - Cine
+        // Pregunta 2: Spinner - Series famosas
         questions.add(new Question(
-                "¿Quién dirigió la película 'Inception'?",
-                Arrays.asList("Steven Spielberg", "Christopher Nolan", "Martin Scorsese", "Quentin Tarantino"),
-                1,
+                "¿Cuál es el nombre real de Walter White en 'Breaking Bad'?",
+                Arrays.asList("Bryan Cranston", "Aaron Paul", "Heisenberg", "Walter Hartwell White"),
+                3,
                 Question.ControlType.SPINNER
         ));
 
-        // Pregunta 3: ListView - Cultura general
+        // Pregunta 3: ListView - Directores
         questions.add(new Question(
-                "¿En qué año llegó el hombre a la Luna?",
-                Arrays.asList("1965", "1969", "1972", "1975"),
+                "¿Quién dirigió la trilogía original de 'Star Wars'?",
+                Arrays.asList("Steven Spielberg", "George Lucas", "J.J. Abrams", "Rian Johnson"),
                 1,
                 Question.ControlType.LIST_VIEW
         ));
 
-        // Pregunta 4: RadioButton con imagen
+        // Pregunta 4: RadioButton con imagen PNG - Death Star
         questions.add(new Question(
-                "¿Qué planeta es este?",
-                R.drawable.planet_saturn,
-                Arrays.asList("Júpiter", "Saturno", "Urano", "Neptuno"),
+                "¿A qué saga pertenece esta imagen?",
+                R.drawable.death_star,
+                Arrays.asList("Star Trek", "Star Wars", "Guardianes de la Galaxia", "Dune"),
                 null,
                 1,
                 Question.ControlType.RADIO_BUTTON
         ));
 
-        // Pregunta 5: Spinner - Arte
+        // Pregunta 5: Spinner - Premios Oscar
         questions.add(new Question(
-                "¿Quién pintó 'La Noche Estrellada'?",
-                Arrays.asList("Pablo Picasso", "Claude Monet", "Vincent van Gogh", "Leonardo da Vinci"),
+                "¿Qué película ganó el Oscar a Mejor Película en 2020?",
+                Arrays.asList("1917", "Joker", "Parasite", "Once Upon a Time in Hollywood"),
                 2,
                 Question.ControlType.SPINNER
         ));
@@ -150,25 +150,49 @@ public class QuizActivity extends AppCompatActivity {
     private void createRadioButtons(Question question) {
         RadioGroup radioGroup = new RadioGroup(this);
         radioGroup.setOrientation(RadioGroup.VERTICAL);
+        radioGroup.setPadding(8, 8, 8, 8);
 
         for (int i = 0; i < question.getOptions().size(); i++) {
             RadioButton radioButton = new RadioButton(this);
             radioButton.setText(question.getOptions().get(i));
             radioButton.setId(i);
-            radioButton.setTextSize(16);
-            radioButton.setPadding(16, 16, 16, 16);
+            radioButton.setTextSize(17);
+            radioButton.setTextColor(0xFFFFFFFF); // Blanco
+            radioButton.setPadding(20, 20, 20, 20);
+
+            // Agregar margen entre opciones
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT
+            );
+            params.setMargins(0, 8, 0, 8);
+            radioButton.setLayoutParams(params);
+            radioButton.setBackgroundColor(0xFF2C2C2E); // Fondo gris oscuro
+
             radioGroup.addView(radioButton);
         }
 
-        radioGroup.setOnCheckedChangeListener((group, checkedId) -> selectedAnswer = checkedId);
+        radioGroup.setOnCheckedChangeListener((group, checkedId) -> {
+            selectedAnswer = checkedId;
+            // Resaltar la opción seleccionada
+            for (int i = 0; i < radioGroup.getChildCount(); i++) {
+                RadioButton rb = (RadioButton) radioGroup.getChildAt(i);
+                if (rb.getId() == checkedId) {
+                    rb.setBackgroundColor(0xFFDC143C); // Rojo cinema cuando está seleccionado
+                } else {
+                    rb.setBackgroundColor(0xFF2C2C2E); // Gris oscuro
+                }
+            }
+        });
 
         controlContainer.addView(radioGroup);
     }
 
     private void createSpinner(Question question) {
         TextView label = new TextView(this);
-        label.setText("Selecciona una opción:");
+        label.setText("🎥 Selecciona una opción:");
         label.setTextSize(16);
+        label.setTextColor(0xFFFFD700); // Dorado
         label.setPadding(16, 16, 16, 16);
         controlContainer.addView(label);
 
@@ -180,12 +204,23 @@ public class QuizActivity extends AppCompatActivity {
         );
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
-        spinner.setPadding(16, 8, 16, 8);
+        spinner.setPadding(20, 16, 20, 16);
+        spinner.setBackgroundColor(0xFF2C2C2E); // Fondo gris oscuro
+
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+        );
+        params.setMargins(16, 8, 16, 8);
+        spinner.setLayoutParams(params);
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 selectedAnswer = position;
+                if (view != null) {
+                    ((TextView) view).setTextColor(0xFFFFD700); // Dorado
+                }
             }
 
             @Override
@@ -199,8 +234,9 @@ public class QuizActivity extends AppCompatActivity {
 
     private void createListView(Question question) {
         TextView label = new TextView(this);
-        label.setText("Toca una opción:");
+        label.setText("🎬 Toca una opción:");
         label.setTextSize(16);
+        label.setTextColor(0xFFFFD700); // Dorado
         label.setPadding(16, 16, 16, 16);
         controlContainer.addView(label);
 
@@ -212,10 +248,16 @@ public class QuizActivity extends AppCompatActivity {
         );
         listView.setAdapter(adapter);
         listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
-        listView.setLayoutParams(new LinearLayout.LayoutParams(
+        listView.setBackgroundColor(0xFF2C2C2E); // Fondo gris oscuro
+        listView.setDivider(null);
+        listView.setPadding(16, 16, 16, 16);
+
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
-                400
-        ));
+                450
+        );
+        params.setMargins(16, 8, 16, 8);
+        listView.setLayoutParams(params);
 
         listView.setOnItemClickListener((parent, view, position, id) -> {
             selectedAnswer = position;

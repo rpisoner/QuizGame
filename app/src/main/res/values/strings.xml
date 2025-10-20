@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">QuizGame</string>
+    <string name="app_name">CineQuiz</string>
     <string name="final_score">Puntuación Final: %1$d</string>
     <string name="question_number">Pregunta %1$d/%2$d</string>
     <string name="current_score">Puntuación: %1$d</string>

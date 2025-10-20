@@ -1,0 +1,64 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="200dp"
+    android:height="200dp"
+    android:viewportWidth="200"
+    android:viewportHeight="200">
+
+    <!-- Claqueta de cine -->
+    <path
+        android:fillColor="#1C1C1E"
+        android:pathData="M30,80 L170,80 L170,170 L30,170 Z"/>
+
+    <!-- Parte superior de la claqueta (rayada) -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M25,30 L175,30 L170,80 L30,80 Z"/>
+
+    <!-- Rayas negras -->
+    <path
+        android:fillColor="#1C1C1E"
+        android:pathData="M35,30 L45,30 L42,80 L32,80 Z"/>
+
+    <path
+        android:fillColor="#1C1C1E"
+        android:pathData="M55,30 L65,30 L62,80 L52,80 Z"/>
+
+    <path
+        android:fillColor="#1C1C1E"
+        android:pathData="M75,30 L85,30 L82,80 L72,80 Z"/>
+
+    <path
+        android:fillColor="#1C1C1E"
+        android:pathData="M95,30 L105,30 L102,80 L92,80 Z"/>
+
+    <path
+        android:fillColor="#1C1C1E"
+        android:pathData="M115,30 L125,30 L122,80 L112,80 Z"/>
+
+    <path
+        android:fillColor="#1C1C1E"
+        android:pathData="M135,30 L145,30 L142,80 L132,80 Z"/>
+
+    <path
+        android:fillColor="#1C1C1E"
+        android:pathData="M155,30 L165,30 L162,80 L152,80 Z"/>
+
+    <!-- Texto simulado en la claqueta -->
+    <path
+        android:fillColor="#FFD700"
+        android:pathData="M50,100 L150,100 L150,110 L50,110 Z"/>
+
+    <path
+        android:fillColor="#FFD700"
+        android:pathData="M50,120 L120,120 L120,130 L50,130 Z"/>
+
+    <!-- Bisagra -->
+    <path
+        android:fillColor="#DC143C"
+        android:pathData="M20,75 a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0"/>
+
+    <path
+        android:fillColor="#DC143C"
+        android:pathData="M170,75 a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0"/>
+</vector>
+

@@ -1,0 +1,53 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="120dp"
+    android:height="120dp"
+    android:viewportWidth="120"
+    android:viewportHeight="120">
+
+    <!-- Cámara de cine -->
+    <path
+        android:fillColor="#FFD700"
+        android:pathData="M20,40 L100,40 L100,90 L20,90 Z"/>
+
+    <path
+        android:fillColor="#1C1C1E"
+        android:pathData="M25,45 L95,45 L95,85 L25,85 Z"/>
+
+    <!-- Lente -->
+    <path
+        android:fillColor="#FFD700"
+        android:pathData="M40,65 a20,20 0 1,0 40,0 a20,20 0 1,0 -40,0"/>
+
+    <path
+        android:fillColor="#2C2C2E"
+        android:pathData="M45,65 a15,15 0 1,0 30,0 a15,15 0 1,0 -30,0"/>
+
+    <!-- Detalles de la cámara -->
+    <path
+        android:fillColor="#DC143C"
+        android:pathData="M80,50 L90,50 L90,55 L80,55 Z"/>
+
+    <!-- Carrete superior -->
+    <path
+        android:fillColor="#FFD700"
+        android:pathData="M30,25 a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0"/>
+
+    <path
+        android:fillColor="#1C1C1E"
+        android:pathData="M35,25 a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0"/>
+
+    <path
+        android:fillColor="#FFD700"
+        android:pathData="M70,25 a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0"/>
+
+    <path
+        android:fillColor="#1C1C1E"
+        android:pathData="M75,25 a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0"/>
+
+    <!-- Película -->
+    <path
+        android:strokeColor="#DC143C"
+        android:strokeWidth="2"
+        android:pathData="M40,35 L40,40 M50,35 L50,40 M60,35 L60,40 M70,35 L70,40 M80,35 L80,40"/>
+</vector>
+

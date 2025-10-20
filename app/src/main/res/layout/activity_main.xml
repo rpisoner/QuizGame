@@ -6,58 +6,94 @@
     android:orientation="vertical"
     android:gravity="center"
     android:padding="32dp"
-    android:background="#E8F5E9">
+    android:background="#1C1C1E">
 
     <ImageView
         android:layout_width="180dp"
         android:layout_height="180dp"
-        android:src="@mipmap/ic_launcher"
-        android:layout_marginBottom="40dp"
-        android:contentDescription="App Icon"/>
+        android:src="@drawable/ic_cinema_camera"
+        android:layout_marginBottom="30dp"
+        android:contentDescription="Cinema Icon"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="QUIZ GAME"
-        android:textSize="40sp"
+        android:text="🎬 CINEQUIZ"
+        android:textSize="42sp"
         android:textStyle="bold"
-        android:textColor="#1B5E20"
-        android:layout_marginBottom="16dp"/>
+        android:textColor="#FFD700"
+        android:layout_marginBottom="10dp"
+        android:shadowColor="#000000"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="4"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="¡Demuestra tus conocimientos!"
+        android:text="EL DESAFÍO DEL SÉPTIMO ARTE"
+        android:textSize="14sp"
+        android:textColor="#FFD700"
+        android:letterSpacing="0.2"
+        android:layout_marginBottom="8dp"/>
+
+    <View
+        android:layout_width="100dp"
+        android:layout_height="2dp"
+        android:background="#DC143C"
+        android:layout_marginBottom="20dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="¿Cuánto sabes de cine y series?"
         android:textSize="18sp"
-        android:textColor="#388E3C"
+        android:textColor="#FFFFFF"
         android:layout_marginBottom="8dp"
         android:textAlignment="center"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="5 preguntas · Varios temas"
-        android:textSize="16sp"
-        android:textColor="#66BB6A"
-        android:layout_marginBottom="50dp"/>
+        android:text="5 preguntas · Películas · Series · Actores"
+        android:textSize="14sp"
+        android:textColor="#AAAAAA"
+        android:layout_marginBottom="40dp"
+        android:textAlignment="center"/>
 
     <Button
         android:id="@+id/btnStartQuiz"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="COMENZAR QUIZ"
+        android:backgroundTint="#DC143C"
+        android:elevation="8dp"
+        android:padding="16dp"
+        android:text="▶ COMENZAR QUIZ"
+        android:textColor="#FFD700"
         android:textSize="18sp"
-        android:textStyle="bold"
-        android:backgroundTint="#4CAF50"
-        android:padding="16dp"/>
+        android:textStyle="bold" />
 
-    <TextView
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="• Acierto: +3 puntos\n• Fallo: -2 puntos"
-        android:textSize="14sp"
-        android:textColor="#757575"
+        android:orientation="horizontal"
         android:layout_marginTop="30dp"
-        android:textAlignment="center"/>
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="⭐ Acierto: +3 pts"
+            android:textSize="14sp"
+            android:textColor="#FFD700"
+            android:layout_marginEnd="20dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="❌ Fallo: -2 pts"
+            android:textSize="14sp"
+            android:textColor="#FF6B6B"/>
+    </LinearLayout>
 
 </LinearLayout>

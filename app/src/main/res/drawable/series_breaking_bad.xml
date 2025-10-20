@@ -1,0 +1,62 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="200dp"
+    android:height="200dp"
+    android:viewportWidth="200"
+    android:viewportHeight="200">
+
+    <!-- Fondo rojo -->
+    <path
+        android:fillColor="#DC143C"
+        android:pathData="M0,0 L200,0 L200,200 L0,200 Z"/>
+
+    <!-- Titulo estilizado "Breaking Bad" - Representación abstracta -->
+    <!-- Tubo de ensayo -->
+    <path
+        android:fillColor="#4A9B8E"
+        android:pathData="M80,40 L120,40 L120,140 Q100,160 80,140 Z"/>
+
+    <path
+        android:fillColor="#6BC4B5"
+        android:pathData="M85,45 L115,45 L115,130 Q100,145 85,130 Z"/>
+
+    <!-- Líquido verde característico -->
+    <path
+        android:fillColor="#7FFF00"
+        android:pathData="M85,100 L115,100 L115,130 Q100,145 85,130 Z"/>
+
+    <path
+        android:fillColor="#32CD32"
+        android:fillAlpha="0.7"
+        android:pathData="M90,105 L110,105 L110,125 Q100,138 90,125 Z"/>
+
+    <!-- Tapón del tubo -->
+    <path
+        android:fillColor="#1C1C1E"
+        android:pathData="M75,35 L125,35 L120,45 L80,45 Z"/>
+
+    <!-- Burbujas -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:fillAlpha="0.6"
+        android:pathData="M95,110 a3,3 0 1,0 6,0 a3,3 0 1,0 -6,0"/>
+
+    <path
+        android:fillColor="#FFFFFF"
+        android:fillAlpha="0.6"
+        android:pathData="M105,120 a2,2 0 1,0 4,0 a2,2 0 1,0 -4,0"/>
+
+    <path
+        android:fillColor="#FFFFFF"
+        android:fillAlpha="0.6"
+        android:pathData="M92,118 a2.5,2.5 0 1,0 5,0 a2.5,2.5 0 1,0 -5,0"/>
+
+    <!-- Sombrero de Walter White (icónico) -->
+    <path
+        android:fillColor="#2C2C2E"
+        android:pathData="M60,160 L140,160 L135,170 L65,170 Z"/>
+
+    <path
+        android:fillColor="#3A3A3C"
+        android:pathData="M70,150 L130,150 Q130,160 100,160 Q70,160 70,150 Z"/>
+</vector>
+

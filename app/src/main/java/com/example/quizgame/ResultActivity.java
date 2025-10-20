@@ -49,17 +49,18 @@ public class ResultActivity extends AppCompatActivity {
 
         tvPercentage.setText(String.format(Locale.getDefault(), "%.1f%% de respuestas correctas", percentage));
 
+        // Mensajes temáticos de cine según la puntuación
         String message;
         if (finalScore >= maxPossibleScore * 0.8) {
-            message = "¡Excelente! ¡Eres un experto!";
+            message = "🏆 ¡OSCAR AL MEJOR CINÉFILO! 🏆\n¡Digno de la alfombra roja!";
         } else if (finalScore >= maxPossibleScore * 0.6) {
-            message = "¡Muy bien! ¡Buen trabajo!";
+            message = "🎬 ¡NOMINADO AL OSCAR!\n¡Gran actuación!";
         } else if (finalScore >= maxPossibleScore * 0.4) {
-            message = "¡No está mal! Puedes mejorar.";
+            message = "🎥 ¡BUEN PAPEL!\nAún hay margen para mejorar";
         } else if (finalScore >= 0) {
-            message = "Sigue intentándolo, ¡puedes hacerlo mejor!";
+            message = "📽️ ¡EXTRA EN EL SET!\nSigue viendo películas";
         } else {
-            message = "¡Ánimo! La práctica hace al maestro.";
+            message = "🎞️ ¡TOMA FALSA!\nRepite la escena";
         }
 
         tvMessage.setText(message);

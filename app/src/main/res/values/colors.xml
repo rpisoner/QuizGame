@@ -2,4 +2,14 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!-- Paleta de colores cinematográfica -->
+    <color name="cinema_gold">#FFD700</color>
+    <color name="cinema_dark">#1C1C1E</color>
+    <color name="cinema_red">#DC143C</color>
+    <color name="cinema_burgundy">#8B0000</color>
+    <color name="cinema_light_gold">#FFF8DC</color>
+    <color name="cinema_dark_gray">#2C2C2E</color>
+    <color name="cinema_medium_gray">#3A3A3C</color>
+    <color name="cinema_accent">#FF6B6B</color>
 </resources>
