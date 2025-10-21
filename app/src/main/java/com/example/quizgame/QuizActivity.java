@@ -110,11 +110,11 @@ public class QuizActivity extends AppCompatActivity {
 
         // Pregunta 6: IMAGE_GRID - Adivina el póster
         questions.add(new Question(
-                "¿Cual de estas imagenes pertenece a la saga 'Star Wars'?",
+                "¿Cual de estas imagenes pertenece a la saga 'Star Trek'?",
                 null, // Sin imagen principal para la pregunta
                 null, // Sin opciones de texto
                 Arrays.asList(R.drawable.death_star, R.drawable.spock, R.drawable.jhon, R.drawable.casadepapelgood),
-                0, // Índice de la respuesta correcta (p. ej., el primer póster)
+                1, // Índice de la respuesta correcta (p. ej., el primer póster)
                 Question.ControlType.IMAGE_GRID
         ));
 
