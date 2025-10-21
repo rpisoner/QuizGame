@@ -114,11 +114,11 @@
         android:id="@+id/btnMainMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="⌂ MENÚ PRINCIPAL"
-        android:textSize="18sp"
         android:backgroundTint="#3A3A3C"
-        android:textColor="#FFD700"
+        android:elevation="6dp"
         android:padding="16dp"
-        android:elevation="4dp"/>
+        android:text="⌂ MENÚ PRINCIPAL"
+        android:textColor="#FFD700"
+        android:textSize="12sp" />
 
 </LinearLayout>

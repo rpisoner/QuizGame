@@ -6,7 +6,7 @@
 
     <!-- Claqueta de cine -->
     <path
-        android:fillColor="#1C1C1E"
+        android:fillColor="#000000"
         android:pathData="M30,80 L170,80 L170,170 L30,170 Z"/>
 
     <!-- Parte superior de la claqueta (rayada) -->
@@ -16,31 +16,31 @@
 
     <!-- Rayas negras -->
     <path
-        android:fillColor="#1C1C1E"
+        android:fillColor="#000000"
         android:pathData="M35,30 L45,30 L42,80 L32,80 Z"/>
 
     <path
-        android:fillColor="#1C1C1E"
+        android:fillColor="#000000"
         android:pathData="M55,30 L65,30 L62,80 L52,80 Z"/>
 
     <path
-        android:fillColor="#1C1C1E"
+        android:fillColor="#000000"
         android:pathData="M75,30 L85,30 L82,80 L72,80 Z"/>
 
     <path
-        android:fillColor="#1C1C1E"
+        android:fillColor="#000000"
         android:pathData="M95,30 L105,30 L102,80 L92,80 Z"/>
 
     <path
-        android:fillColor="#1C1C1E"
+        android:fillColor="#000000"
         android:pathData="M115,30 L125,30 L122,80 L112,80 Z"/>
 
     <path
-        android:fillColor="#1C1C1E"
+        android:fillColor="#000000"
         android:pathData="M135,30 L145,30 L142,80 L132,80 Z"/>
 
     <path
-        android:fillColor="#1C1C1E"
+        android:fillColor="#000000"
         android:pathData="M155,30 L165,30 L162,80 L152,80 Z"/>
 
     <!-- Texto simulado en la claqueta -->
