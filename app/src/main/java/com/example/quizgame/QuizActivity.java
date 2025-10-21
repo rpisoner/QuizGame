@@ -3,6 +3,7 @@ package com.example.quizgame;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.ImageView;
@@ -127,34 +128,28 @@ public class QuizActivity extends AppCompatActivity {
                 Question.ControlType.IMAGE_GRID
         ));
 
-        // Pregunta 8: IMAGE_GRID - Naves espaciales
+        // Pregunta 8: Spinner - Naves espaciales
         questions.add(new Question(
-                "Selecciona la nave 'Halcón Milenario'.",
-                null,
-                null,
-                Arrays.asList(R.drawable.death_star, R.drawable.death_star, R.drawable.death_star, R.drawable.death_star),
-                3,
-                Question.ControlType.IMAGE_GRID
-        ));
-
-        // Pregunta 9: IMAGE_GRID - Objetos icónicos
-        questions.add(new Question(
-                "¿Qué objeto es la 'Varita de Saúco' de Harry Potter?",
-                null,
-                null,
-                Arrays.asList(R.drawable.death_star, R.drawable.death_star, R.drawable.woody, R.drawable.death_star),
+                "El Halcón Milenario es una nave de la saga...",
+                Arrays.asList("Star Trek", "Battlestar Galactica", "Star Wars", "Stargate"),
                 2,
-                Question.ControlType.IMAGE_GRID
+                Question.ControlType.SPINNER
         ));
 
-        // Pregunta 10: IMAGE_GRID - Actrices famosas
+        // Pregunta 9: ListView - Objetos icónicos
         questions.add(new Question(
-                "¿Quién de ellas es Scarlett Johansson?",
-                null,
-                null,
-                Arrays.asList(R.drawable.death_star, R.drawable.death_star, R.drawable.death_star, R.drawable.death_star),
+                "¿A qué universo mágico pertenece la 'Varita de Saúco'?",
+                Arrays.asList("El Señor de los Anillos", "Harry Potter", "Las Crónicas de Narnia", "Juego de Tronos"),
+                1,
+                Question.ControlType.LIST_VIEW
+        ));
+
+        // Pregunta 10: RadioButton - Actrices famosas
+        questions.add(new Question(
+                "¿Qué actriz interpreta a la Viuda Negra en el Universo Cinematográfico de Marvel?",
+                Arrays.asList("Scarlett Johansson", "Gal Gadot", "Zoe Saldaña", "Jennifer Lawrence"),
                 0,
-                Question.ControlType.IMAGE_GRID
+                Question.ControlType.RADIO_BUTTON
         ));
     }
 
@@ -251,11 +246,18 @@ public class QuizActivity extends AppCompatActivity {
         controlContainer.addView(label);
 
         Spinner spinner = new Spinner(this);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(
-                this,
-                android.R.layout.simple_spinner_item,
-                question.getOptions()
-        );
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, question.getOptions()) {
+            @Override
+            public View getDropDownView(int position, View convertView, ViewGroup parent) {
+                View view = super.getDropDownView(position, convertView, parent);
+                TextView textView = (TextView) view;
+                textView.setBackgroundColor(0xFF3A3A3C); // Fondo gris claro para el dropdown
+                textView.setTextColor(0xFFFFFFFF); // Texto blanco
+                textView.setPadding(20, 20, 20, 20);
+                return view;
+            }
+        };
+
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setPadding(20, 16, 20, 16);
@@ -295,11 +297,18 @@ public class QuizActivity extends AppCompatActivity {
         controlContainer.addView(label);
 
         ListView listView = new ListView(this);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
                 this,
                 android.R.layout.simple_list_item_single_choice,
                 question.getOptions()
-        );
+        ) {
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+                TextView view = (TextView) super.getView(position, convertView, parent);
+                view.setTextColor(0xFFFFFFFF); // Set text color to white
+                return view;
+            }
+        };
         listView.setAdapter(adapter);
         listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
         listView.setBackgroundColor(0xFF2C2C2E); // Fondo gris oscuro
