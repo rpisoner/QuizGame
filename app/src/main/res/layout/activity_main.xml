@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,6 +8,26 @@
     android:gravity="center"
     android:padding="32dp"
     android:background="#1C1C1E">
+
+    <!-- Botón de manual en la esquina superior derecha -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp">
+
+        <ImageButton
+            android:id="@+id/btnManual"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_gravity="end"
+            android:background="@drawable/circular_button_background"
+            android:contentDescription="Manual de Usuario"
+            android:elevation="8dp"
+            android:padding="12dp"
+            android:scaleType="fitCenter"
+            android:src="@android:drawable/ic_menu_help"
+            app:tint="#FFD700" />
+    </FrameLayout>
 
     <ImageView
         android:layout_width="180dp"
@@ -97,3 +118,4 @@
     </LinearLayout>
 
 </LinearLayout>
+

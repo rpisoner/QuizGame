@@ -12,4 +12,7 @@
     <color name="cinema_dark_gray">#2C2C2E</color>
     <color name="cinema_medium_gray">#3A3A3C</color>
     <color name="cinema_accent">#FF6B6B</color>
+
+    <!-- Color de fondo del icono launcher -->
+    <color name="ic_launcher_background">#DC143C</color>
 </resources>

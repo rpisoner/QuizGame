@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#1C1C1E">
+
+    <!-- Toolbar -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#DC143C"
+        android:elevation="8dp"
+        app:title="📖 Manual de Usuario"
+        app:titleTextColor="#FFD700"
+        app:navigationIcon="?attr/homeAsUpIndicator"
+        app:navigationIconTint="#FFD700"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="24dp">
+
+            <!-- Título principal -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🎬 Bienvenido a CineQuiz"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                android:textColor="#FFD700"
+                android:layout_gravity="center"
+                android:layout_marginBottom="8dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="El desafío definitivo del séptimo arte"
+                android:textSize="14sp"
+                android:textColor="#AAAAAA"
+                android:layout_gravity="center"
+                android:layout_marginBottom="30dp"/>
+
+            <!-- Sección: ¿Qué es CineQuiz? -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardBackgroundColor="#2C2C2E"
+                app:cardElevation="4dp"
+                app:cardCornerRadius="12dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="❓ ¿Qué es CineQuiz?"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:textColor="#FFD700"
+                        android:layout_marginBottom="12dp"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="CineQuiz es una aplicación de trivia sobre películas y series. Pon a prueba tus conocimientos sobre el cine respondiendo 10 preguntas variadas sobre películas, series, actores y curiosidades del mundo del entretenimiento."
+                        android:textSize="15sp"
+                        android:textColor="#FFFFFF"
+                        android:lineSpacingExtra="4dp"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Sección: Cómo jugar -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardBackgroundColor="#2C2C2E"
+                app:cardElevation="4dp"
+                app:cardCornerRadius="12dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="🎮 ¿Cómo jugar?"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:textColor="#FFD700"
+                        android:layout_marginBottom="12dp"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="1️⃣ Pulsa 'COMENZAR QUIZ' en la pantalla principal"
+                        android:textSize="15sp"
+                        android:textColor="#FFFFFF"
+                        android:layout_marginBottom="8dp"
+                        android:lineSpacingExtra="4dp"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="2️⃣ Lee cuidadosamente cada pregunta"
+                        android:textSize="15sp"
+                        android:textColor="#FFFFFF"
+                        android:layout_marginBottom="8dp"
+                        android:lineSpacingExtra="4dp"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="3️⃣ Selecciona tu respuesta entre las opciones disponibles"
+                        android:textSize="15sp"
+                        android:textColor="#FFFFFF"
+                        android:layout_marginBottom="8dp"
+                        android:lineSpacingExtra="4dp"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="4️⃣ Pulsa el botón 'RESPONDER' para confirmar"
+                        android:textSize="15sp"
+                        android:textColor="#FFFFFF"
+                        android:layout_marginBottom="8dp"
+                        android:lineSpacingExtra="4dp"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="5️⃣ Continúa hasta completar las 10 preguntas"
+                        android:textSize="15sp"
+                        android:textColor="#FFFFFF"
+                        android:lineSpacingExtra="4dp"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Sección: Sistema de puntuación -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardBackgroundColor="#2C2C2E"
+                app:cardElevation="4dp"
+                app:cardCornerRadius="12dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="⭐ Sistema de Puntuación"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:textColor="#FFD700"
+                        android:layout_marginBottom="12dp"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="8dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="✅ Respuesta correcta:"
+                            android:textSize="15sp"
+                            android:textColor="#FFFFFF"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="+3 puntos"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:textColor="#4CAF50"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="12dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="❌ Respuesta incorrecta:"
+                            android:textSize="15sp"
+                            android:textColor="#FFFFFF"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="-2 puntos"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:textColor="#FF6B6B"/>
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="💡 Consejo: Piensa bien antes de responder. Es mejor una respuesta correcta que adivinar al azar."
+                        android:textSize="14sp"
+                        android:textColor="#FFD700"
+                        android:textStyle="italic"
+                        android:lineSpacingExtra="4dp"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Sección: Tipos de preguntas -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardBackgroundColor="#2C2C2E"
+                app:cardElevation="4dp"
+                app:cardCornerRadius="12dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="📝 Tipos de Preguntas"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:textColor="#FFD700"
+                        android:layout_marginBottom="12dp"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="🔘 Opción múltiple: Selecciona una respuesta entre varias opciones"
+                        android:textSize="15sp"
+                        android:textColor="#FFFFFF"
+                        android:layout_marginBottom="8dp"
+                        android:lineSpacingExtra="4dp"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="✔️ Verdadero/Falso: Decide si la afirmación es correcta o no"
+                        android:textSize="15sp"
+                        android:textColor="#FFFFFF"
+                        android:layout_marginBottom="8dp"
+                        android:lineSpacingExtra="4dp"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="✍️ Respuesta corta: Escribe tu respuesta en el campo de texto"
+                        android:textSize="15sp"
+                        android:textColor="#FFFFFF"
+                        android:lineSpacingExtra="4dp"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Sección: Botones y controles -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardBackgroundColor="#2C2C2E"
+                app:cardElevation="4dp"
+                app:cardCornerRadius="12dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="🎛️ Botones y Controles"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:textColor="#FFD700"
+                        android:layout_marginBottom="12dp"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="✓ RESPONDER: Confirma tu respuesta seleccionada"
+                        android:textSize="15sp"
+                        android:textColor="#FFFFFF"
+                        android:layout_marginBottom="8dp"
+                        android:lineSpacingExtra="4dp"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="↻ REINICIAR: Comienza el quiz desde el principio"
+                        android:textSize="15sp"
+                        android:textColor="#FFFFFF"
+                        android:layout_marginBottom="8dp"
+                        android:lineSpacingExtra="4dp"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="↺ JUGAR DE NUEVO: Al finalizar, vuelve a intentarlo"
+                        android:textSize="15sp"
+                        android:textColor="#FFFFFF"
+                        android:lineSpacingExtra="4dp"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Sección: Consejos -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardBackgroundColor="#2C2C2E"
+                app:cardElevation="4dp"
+                app:cardCornerRadius="12dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="💡 Consejos para Mejorar"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:textColor="#FFD700"
+                        android:layout_marginBottom="12dp"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="• Lee cada pregunta cuidadosamente antes de responder"
+                        android:textSize="15sp"
+                        android:textColor="#FFFFFF"
+                        android:layout_marginBottom="8dp"
+                        android:lineSpacingExtra="4dp"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="• No te apresures, tómate tu tiempo para pensar"
+                        android:textSize="15sp"
+                        android:textColor="#FFFFFF"
+                        android:layout_marginBottom="8dp"
+                        android:lineSpacingExtra="4dp"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="• Si no estás seguro, confía en tu primera impresión"
+                        android:textSize="15sp"
+                        android:textColor="#FFFFFF"
+                        android:layout_marginBottom="8dp"
+                        android:lineSpacingExtra="4dp"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="• Practica regularmente para mejorar tu puntuación"
+                        android:textSize="15sp"
+                        android:textColor="#FFFFFF"
+                        android:lineSpacingExtra="4dp"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Botón de cerrar -->
+            <Button
+                android:id="@+id/btnClose"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="✕ CERRAR MANUAL"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#FFD700"
+                android:backgroundTint="#DC143C"
+                android:padding="16dp"
+                android:layout_marginTop="16dp"
+                android:elevation="4dp"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
+

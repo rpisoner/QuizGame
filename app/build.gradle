@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace 'com.example.quizgame'
+    namespace 'com.example.cinequiz'
     compileSdk 36
 
     defaultConfig {
-        applicationId "com.example.quizgame"
+        applicationId "com.example.cinequiz"
         minSdk 24
         targetSdk 36
         versionCode 1
