@@ -31,11 +31,20 @@ public class ResultActivity extends AppCompatActivity {
         Button btnPlayAgain = findViewById(R.id.btnPlayAgain);
         Button btnMainMenu = findViewById(R.id.btnMainMenu);
 
-        btnPlayAgain.setOnClickListener(v -> playAgain());
-        btnMainMenu.setOnClickListener(v -> goToMainMenu());
+        btnPlayAgain.setOnClickListener(v -> {
+            SoundManager.playButtonSound(this);
+            playAgain();
+        });
+        btnMainMenu.setOnClickListener(v -> {
+            SoundManager.playButtonSound(this);
+            goToMainMenu();
+        });
     }
 
     private void displayResults() {
+        // Reproducir sonido de pantalla final
+        SoundManager.playFinalScreenSound(this);
+
         int finalScore = getIntent().getIntExtra("FINAL_SCORE", 0);
         int totalQuestions = getIntent().getIntExtra("TOTAL_QUESTIONS", 5);
         int maxPossibleScore = totalQuestions * 3;

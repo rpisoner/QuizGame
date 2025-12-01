@@ -35,11 +35,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void startQuiz() {
+        SoundManager.playButtonSound(this);
         Intent intent = new Intent(MainActivity.this, QuizActivity.class);
         startActivity(intent);
     }
 
     private void openManual() {
+        SoundManager.playButtonSound(this);
         Intent intent = new Intent(MainActivity.this, ManualActivity.class);
         startActivity(intent);
     }

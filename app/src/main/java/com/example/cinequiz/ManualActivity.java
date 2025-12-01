@@ -29,6 +29,7 @@ public class ManualActivity extends AppCompatActivity {
         btnClose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SoundManager.playButtonSound(ManualActivity.this);
                 finish();
             }
         });
@@ -36,6 +37,7 @@ public class ManualActivity extends AppCompatActivity {
 
     @Override
     public boolean onSupportNavigateUp() {
+        SoundManager.playButtonSound(this);
         onBackPressed();
         return true;
     }

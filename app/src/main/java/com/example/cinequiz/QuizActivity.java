@@ -1,6 +1,8 @@
 package com.example.cinequiz;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +18,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ArrayAdapter;
 import android.widget.AdapterView;
+import android.widget.VideoView;
+import android.widget.MediaController;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -42,6 +46,9 @@ public class QuizActivity extends AppCompatActivity {
 
     private DatabaseHelper databaseHelper;
 
+    // MediaPlayer para reproducir audio
+    private MediaPlayer mediaPlayer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,7 +71,10 @@ public class QuizActivity extends AppCompatActivity {
         Button btnRestart = findViewById(R.id.btnRestart);
 
         btnSubmit.setOnClickListener(v -> checkAnswer());
-        btnRestart.setOnClickListener(v -> restartGame());
+        btnRestart.setOnClickListener(v -> {
+            SoundManager.playButtonSound(this);
+            restartGame();
+        });
     }
 
     private void initializeQuestions() {
@@ -83,6 +93,9 @@ public class QuizActivity extends AppCompatActivity {
             finishQuiz();
             return;
         }
+
+        // Detener cualquier reproducción anterior
+        stopMediaPlayback();
 
         Question question = questions.get(currentQuestionIndex);
         selectedAnswer = -1;
@@ -117,6 +130,12 @@ public class QuizActivity extends AppCompatActivity {
                 break;
             case IMAGE_GRID:
                 createImageGrid(question);
+                break;
+            case AUDIO_QUESTION:
+                createAudioQuestion(question);
+                break;
+            case VIDEO_QUESTION:
+                createVideoQuestion(question);
                 break;
         }
     }
@@ -304,6 +323,105 @@ public class QuizActivity extends AppCompatActivity {
         controlContainer.addView(gridLayout);
     }
 
+    private void createAudioQuestion(Question question) {
+        // Crear botón de reproducción de audio
+        Button btnPlayAudio = new Button(this);
+        btnPlayAudio.setText("▶ Reproducir Audio");
+        btnPlayAudio.setTextSize(18);
+        btnPlayAudio.setTextColor(0xFFFFFFFF);
+        btnPlayAudio.setBackgroundColor(0xFFDC143C); // Rojo cinema
+        btnPlayAudio.setPadding(20, 40, 20, 40);
+
+        LinearLayout.LayoutParams audioParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+        );
+        audioParams.setMargins(16, 16, 16, 32);
+        btnPlayAudio.setLayoutParams(audioParams);
+
+        // Inicializar MediaPlayer
+        if (question.hasQuestionAudio()) {
+            mediaPlayer = MediaPlayer.create(this, question.getQuestionAudioId());
+
+            btnPlayAudio.setOnClickListener(v -> {
+                SoundManager.playButtonSound(this);
+                if (mediaPlayer != null) {
+                    if (mediaPlayer.isPlaying()) {
+                        mediaPlayer.pause();
+                        btnPlayAudio.setText("▶ Reproducir Audio");
+                    } else {
+                        mediaPlayer.start();
+                        btnPlayAudio.setText("⏸ Pausar Audio");
+
+                        // Cuando termine el audio, resetear el botón
+                        mediaPlayer.setOnCompletionListener(mp -> {
+                            btnPlayAudio.setText("▶ Reproducir Audio");
+                        });
+                    }
+                }
+            });
+        }
+
+        controlContainer.addView(btnPlayAudio);
+
+        // Agregar las opciones de respuesta con RadioButtons
+        createRadioButtons(question);
+    }
+
+    private void createVideoQuestion(Question question) {
+        if (!question.hasQuestionVideo()) return;
+
+        // Crear VideoView
+        VideoView videoView = new VideoView(this);
+
+        LinearLayout.LayoutParams videoParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                600 // Altura fija para el video
+        );
+        videoParams.setMargins(16, 16, 16, 16);
+        videoView.setLayoutParams(videoParams);
+        videoView.setBackgroundColor(0xFF000000); // Fondo negro
+
+        // Configurar el video
+        Uri videoUri = Uri.parse("android.resource://" + getPackageName() + "/" + question.getQuestionVideoId());
+        videoView.setVideoURI(videoUri);
+
+        // Agregar controles de media
+        MediaController mediaController = new MediaController(this);
+        mediaController.setAnchorView(videoView);
+        videoView.setMediaController(mediaController);
+
+        // Reproducir automáticamente
+        videoView.start();
+
+        // Hacer el video en loop
+        videoView.setOnCompletionListener(mp -> videoView.start());
+
+        controlContainer.addView(videoView);
+
+        // Agregar las opciones de respuesta con RadioButtons
+        createRadioButtons(question);
+    }
+
+    private void stopMediaPlayback() {
+        // Detener y liberar MediaPlayer si existe
+        if (mediaPlayer != null) {
+            if (mediaPlayer.isPlaying()) {
+                mediaPlayer.stop();
+            }
+            mediaPlayer.release();
+            mediaPlayer = null;
+        }
+
+        // Detener cualquier VideoView en el contenedor
+        for (int i = 0; i < controlContainer.getChildCount(); i++) {
+            View child = controlContainer.getChildAt(i);
+            if (child instanceof VideoView) {
+                VideoView videoView = (VideoView) child;
+                videoView.stopPlayback();
+            }
+        }
+    }
 
     private void checkAnswer() {
         if (selectedAnswer == -1) {
@@ -315,9 +433,13 @@ public class QuizActivity extends AppCompatActivity {
         boolean isCorrect = selectedAnswer == question.getCorrectAnswerIndex();
 
         if (isCorrect) {
+            // Reproducir sonido de respuesta correcta
+            SoundManager.playCorrectSound(this);
             score += POINTS_CORRECT;
             showFeedbackDialog("¡Correcto!", "¡Excelente! Has ganado " + POINTS_CORRECT + " puntos.", true);
         } else {
+            // Reproducir sonido de respuesta incorrecta
+            SoundManager.playIncorrectSound(this);
             String correctAnswerText;
             if (question.getControlType() == Question.ControlType.IMAGE_GRID) {
                 correctAnswerText = "la opción " + (question.getCorrectAnswerIndex() + 1);
@@ -356,6 +478,7 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     private void restartGame() {
+        stopMediaPlayback();
         currentQuestionIndex = 0;
         score = 0;
         displayQuestion();
@@ -363,11 +486,23 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     private void finishQuiz() {
+        stopMediaPlayback();
         Intent intent = new Intent(QuizActivity.this, ResultActivity.class);
         intent.putExtra("FINAL_SCORE", score);
         intent.putExtra("TOTAL_QUESTIONS", questions.size());
         startActivity(intent);
         finish();
     }
-}
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        stopMediaPlayback();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        stopMediaPlayback();
+    }
+}

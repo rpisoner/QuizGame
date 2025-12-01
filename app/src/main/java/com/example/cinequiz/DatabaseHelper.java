@@ -13,13 +13,15 @@ import java.util.List;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "CineQuizDB";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2; // Incrementado para agregar audio y video
 
     // Tabla de preguntas
     private static final String TABLE_QUESTIONS = "questions";
     private static final String COL_ID = "id";
     private static final String COL_QUESTION_TEXT = "question_text";
     private static final String COL_QUESTION_IMAGE = "question_image";
+    private static final String COL_QUESTION_AUDIO = "question_audio";
+    private static final String COL_QUESTION_VIDEO = "question_video";
     private static final String COL_OPTIONS = "options";
     private static final String COL_OPTION_IMAGES = "option_images";
     private static final String COL_CORRECT_ANSWER = "correct_answer";
@@ -35,6 +37,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 COL_QUESTION_TEXT + " TEXT, " +
                 COL_QUESTION_IMAGE + " INTEGER, " +
+                COL_QUESTION_AUDIO + " INTEGER, " +
+                COL_QUESTION_VIDEO + " INTEGER, " +
                 COL_OPTIONS + " TEXT, " +
                 COL_OPTION_IMAGES + " TEXT, " +
                 COL_CORRECT_ANSWER + " INTEGER, " +
@@ -55,7 +59,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // Pregunta 1: RadioButton - Películas clásicas
         insertQuestion(db,
                 "¿Qué actor interpretó al Joker en 'The Dark Knight' (2008)?",
-                null,
+                null, null, null,
                 "Joaquin Phoenix|Heath Ledger|Jack Nicholson|Jared Leto",
                 null,
                 1,
@@ -64,7 +68,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // Pregunta 2: Spinner - Series famosas
         insertQuestion(db,
                 "¿Cuál es el nombre del actor del personaje Walter White en 'Breaking Bad'?",
-                null,
+                null, null, null,
                 "Bryan Cranston|Aaron Paul|Heisenberg García|Tom Cruise",
                 null,
                 0,
@@ -73,7 +77,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // Pregunta 3: ListView - Directores
         insertQuestion(db,
                 "¿Quién dirigió la trilogía original de 'Star Wars'?",
-                null,
+                null, null, null,
                 "Steven Spielberg|George Lucas|J.J. Abrams|Rian Johnson",
                 null,
                 1,
@@ -82,7 +86,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // Pregunta 4: RadioButton con imagen PNG - Death Star
         insertQuestion(db,
                 "¿A qué saga pertenece esta imagen?",
-                R.drawable.death_star,
+                R.drawable.death_star, null, null,
                 "Star Trek|Star Wars|Guardianes de la Galaxia|Dune",
                 null,
                 1,
@@ -91,7 +95,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // Pregunta 5: Spinner - Premios Oscar
         insertQuestion(db,
                 "¿Qué película ganó el Oscar a Mejor Película en 2020?",
-                null,
+                null, null, null,
                 "1917|Joker|Parasite|Once Upon a Time in Hollywood",
                 null,
                 2,
@@ -100,7 +104,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // Pregunta 6: IMAGE_GRID - Adivina el póster
         insertQuestion(db,
                 "¿Cual de estas imagenes pertenece a la saga 'Star Trek'?",
-                null,
+                null, null, null,
                 null,
                 String.valueOf(R.drawable.death_star) + "|" +
                         String.valueOf(R.drawable.spock) + "|" +
@@ -112,7 +116,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // Pregunta 7: IMAGE_GRID - Personajes de Pixar
         insertQuestion(db,
                 "¿Cuál de estos personajes es 'Woody' de Toy Story?",
-                null,
+                null, null, null,
                 null,
                 String.valueOf(R.drawable.buzzgood) + "|" +
                         String.valueOf(R.drawable.woody) + "|" +
@@ -124,7 +128,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // Pregunta 8: Spinner - Naves espaciales
         insertQuestion(db,
                 "El Halcón Milenario es una nave de la saga...",
-                null,
+                null, null, null,
                 "Star Trek|Battlestar Galactica|Star Wars|Stargate",
                 null,
                 2,
@@ -133,7 +137,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // Pregunta 9: ListView - Objetos icónicos
         insertQuestion(db,
                 "¿A qué universo mágico pertenece la 'Varita de Saúco'?",
-                null,
+                null, null, null,
                 "El Señor de los Anillos|Harry Potter|Las Crónicas de Narnia|Juego de Tronos",
                 null,
                 1,
@@ -142,27 +146,72 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // Pregunta 10: RadioButton - Actrices famosas
         insertQuestion(db,
                 "¿Qué actriz interpreta a la Viuda Negra en el Universo Cinematográfico de Marvel?",
-                null,
+                null, null, null,
                 "Scarlett Johansson|Gal Gadot|Zoe Saldaña|Jennifer Lawrence",
                 null,
                 0,
                 "RADIO_BUTTON");
-        // Pregunta 11: RadioButton - Actrices famosas
+
+        // Pregunta 11: AUDIO_QUESTION - Adivina la película por el audio
         insertQuestion(db,
-                "¿Qué actriz interpreta a la Viuda Negra en el Universo Cinematográfico de Marvel?",
+                "🎵 Escucha el audio y adivina a qué película o serie pertenece:",
+                null, R.raw.avengers, null,
+                "Star Wars|Avengers|Guardianes de la Galaxia|Thor",
                 null,
-                "Scarlett Johansson|Gal Gadot|Zoe Saldaña|Jennifer Lawrence",
+                1,
+                "AUDIO_QUESTION");
+
+        // Pregunta 12: AUDIO_QUESTION - Harry Potter
+        insertQuestion(db,
+                "🎵 ¿De qué saga de películas es este tema musical?",
+                null, R.raw.harry_potter, null,
+                "El Señor de los Anillos|Harry Potter|Las Crónicas de Narnia|Percy Jackson",
+                null,
+                1,
+                "AUDIO_QUESTION");
+
+        // Pregunta 13: AUDIO_QUESTION - Jurassic Park
+        insertQuestion(db,
+                "🎵 Escucha este icónico tema y adivina la película:",
+                null, R.raw.jurassic_park, null,
+                "King Kong|Jurassic Park|Godzilla|Parque Jurásico III",
+                null,
+                1,
+                "AUDIO_QUESTION");
+
+        // Pregunta 14: AUDIO_QUESTION - Lord of the Rings
+        insertQuestion(db,
+                "🎵 ¿A qué épica trilogía pertenece esta música?",
+                null, R.raw.lord_of_rings, null,
+                "El Señor de los Anillos|El Hobbit|Juego de Tronos|Conan el Bárbaro",
                 null,
                 0,
-                "RADIO_BUTTON");
+                "AUDIO_QUESTION");
+
+        // Pregunta 15: AUDIO_QUESTION - Star Wars (laser sound)
+        insertQuestion(db,
+                "🎵 Escucha este sonido característico. ¿De qué saga es?",
+                null, R.raw.laser, null,
+                "Star Wars|Star Trek|Battlestar Galactica|Blade Runner",
+                null,
+                0,
+                "AUDIO_QUESTION");
     }
 
-    private void insertQuestion(SQLiteDatabase db, String questionText, Integer questionImage,
-                                String options, String optionImages, int correctAnswer, String controlType) {
+    private void insertQuestion(SQLiteDatabase db, String questionText,
+                                Integer questionImage, Integer questionAudio, Integer questionVideo,
+                                String options, String optionImages,
+                                int correctAnswer, String controlType) {
         ContentValues values = new ContentValues();
         values.put(COL_QUESTION_TEXT, questionText);
         if (questionImage != null) {
             values.put(COL_QUESTION_IMAGE, questionImage);
+        }
+        if (questionAudio != null) {
+            values.put(COL_QUESTION_AUDIO, questionAudio);
+        }
+        if (questionVideo != null) {
+            values.put(COL_QUESTION_VIDEO, questionVideo);
         }
         values.put(COL_OPTIONS, options);
         values.put(COL_OPTION_IMAGES, optionImages);
@@ -173,9 +222,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     // Método público para agregar preguntas desde fuera
     public void addQuestion(String questionText, Integer questionImage,
-                           String options, String optionImages, int correctAnswer, String controlType) {
+                           Integer questionAudio, Integer questionVideo,
+                           String options, String optionImages,
+                           int correctAnswer, String controlType) {
         SQLiteDatabase db = this.getWritableDatabase();
-        insertQuestion(db, questionText, questionImage, options, optionImages, correctAnswer, controlType);
+        insertQuestion(db, questionText, questionImage, questionAudio, questionVideo,
+                      options, optionImages, correctAnswer, controlType);
         db.close();
     }
 
@@ -194,6 +246,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 int imageColIndex = cursor.getColumnIndexOrThrow(COL_QUESTION_IMAGE);
                 if (!cursor.isNull(imageColIndex)) {
                     questionImage = cursor.getInt(imageColIndex);
+                }
+
+                Integer questionAudio = null;
+                int audioColIndex = cursor.getColumnIndexOrThrow(COL_QUESTION_AUDIO);
+                if (!cursor.isNull(audioColIndex)) {
+                    questionAudio = cursor.getInt(audioColIndex);
+                }
+
+                Integer questionVideo = null;
+                int videoColIndex = cursor.getColumnIndexOrThrow(COL_QUESTION_VIDEO);
+                if (!cursor.isNull(videoColIndex)) {
+                    questionVideo = cursor.getInt(videoColIndex);
                 }
 
                 String optionsStr = cursor.getString(cursor.getColumnIndexOrThrow(COL_OPTIONS));
@@ -216,8 +280,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 String controlTypeStr = cursor.getString(cursor.getColumnIndexOrThrow(COL_CONTROL_TYPE));
                 Question.ControlType controlType = Question.ControlType.valueOf(controlTypeStr);
 
-                Question question = new Question(questionText, questionImage, options, optionImages,
-                        correctAnswer, controlType);
+                Question question = new Question(questionText, questionImage, questionAudio, questionVideo,
+                        options, optionImages, correctAnswer, controlType);
                 questions.add(question);
 
             } while (cursor.moveToNext());
@@ -248,4 +312,3 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return count;
     }
 }
-
