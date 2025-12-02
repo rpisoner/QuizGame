@@ -7,6 +7,7 @@ import android.widget.ImageButton;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -15,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Button btnStartQuiz;
     private ImageButton btnManual;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +28,15 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        // Configurar Toolbar con logo
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+            getSupportActionBar().setLogo(R.mipmap.logo_round);
+            getSupportActionBar().setDisplayUseLogoEnabled(true);
+        }
 
         btnStartQuiz = findViewById(R.id.btnStartQuiz);
         btnStartQuiz.setOnClickListener(v -> startQuiz());
@@ -46,4 +57,3 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 }
-

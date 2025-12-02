@@ -23,6 +23,7 @@ import android.widget.MediaController;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -35,6 +36,7 @@ public class QuizActivity extends AppCompatActivity {
     private TextView tvQuestionNumber;
     private ImageView ivQuestionImage;
     private LinearLayout controlContainer;
+    private Toolbar toolbar;
 
     private List<Question> questions;
     private int currentQuestionIndex = 0;
@@ -55,6 +57,14 @@ public class QuizActivity extends AppCompatActivity {
         setContentView(R.layout.activity_quiz);
 
         databaseHelper = new DatabaseHelper(this);
+
+        // Configurar Toolbar con logo
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+            getSupportActionBar().setDisplayUseLogoEnabled(true);
+        }
 
         initializeViews();
         initializeQuestions();

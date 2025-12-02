@@ -5,117 +5,133 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
-    android:padding="32dp"
     android:background="#1C1C1E">
 
-    <!-- Botón de manual en la esquina superior derecha -->
-    <FrameLayout
+    <!-- Toolbar con logo -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp">
+        android:layout_height="?attr/actionBarSize"
+        android:background="#1C1C1E"
+        android:elevation="4dp"
+        app:titleTextColor="#FFD700"
+        app:title="CineQuiz" />
 
-        <ImageButton
-            android:id="@+id/btnManual"
-            android:layout_width="56dp"
-            android:layout_height="56dp"
-            android:layout_gravity="end"
-            android:background="@drawable/circular_button_background"
-            android:contentDescription="Manual de Usuario"
-            android:elevation="8dp"
-            android:padding="12dp"
-            android:scaleType="fitCenter"
-            android:src="@android:drawable/ic_menu_help"
-            app:tint="#FFD700" />
-    </FrameLayout>
-
-    <ImageView
-        android:layout_width="180dp"
-        android:layout_height="180dp"
-        android:src="@drawable/ic_cinema_camera"
-        android:layout_marginBottom="30dp"
-        android:contentDescription="Cinema Icon"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="🎬 CINEQUIZ"
-        android:textSize="42sp"
-        android:textStyle="bold"
-        android:textColor="#FFD700"
-        android:layout_marginBottom="10dp"
-        android:shadowColor="#000000"
-        android:shadowDx="2"
-        android:shadowDy="2"
-        android:shadowRadius="4"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="EL DESAFÍO DEL SÉPTIMO ARTE"
-        android:textSize="14sp"
-        android:textColor="#FFD700"
-        android:letterSpacing="0.2"
-        android:layout_marginBottom="8dp"/>
-
-    <View
-        android:layout_width="100dp"
-        android:layout_height="2dp"
-        android:background="#DC143C"
-        android:layout_marginBottom="20dp"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="¿Cuánto sabes de cine y series?"
-        android:textSize="18sp"
-        android:textColor="#FFFFFF"
-        android:layout_marginBottom="8dp"
-        android:textAlignment="center"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="10 preguntas · Películas · Series · Actores"
-        android:textSize="14sp"
-        android:textColor="#AAAAAA"
-        android:layout_marginBottom="40dp"
-        android:textAlignment="center"/>
-
-    <Button
-        android:id="@+id/btnStartQuiz"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#DC143C"
-        android:elevation="8dp"
-        android:padding="16dp"
-        android:text="▶ COMENZAR QUIZ"
-        android:textColor="#FFD700"
-        android:textSize="18sp"
-        android:textStyle="bold" />
-
+    <!-- Contenido principal -->
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="30dp"
-        android:gravity="center">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="32dp">
+
+        <!-- Botón de manual en la esquina superior derecha -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp">
+
+            <ImageButton
+                android:id="@+id/btnManual"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_gravity="end"
+                android:background="@drawable/circular_button_background"
+                android:contentDescription="Manual de Usuario"
+                android:elevation="8dp"
+                android:padding="12dp"
+                android:scaleType="fitCenter"
+                android:src="@android:drawable/ic_menu_help"
+                app:tint="#FFD700" />
+        </FrameLayout>
+
+        <ImageView
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:src="@drawable/ic_cinema_camera"
+            android:layout_marginBottom="30dp"
+            android:contentDescription="Cinema Icon"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="⭐ Acierto: +3 pts"
+            android:text="🎬 CINEQUIZ"
+            android:textSize="42sp"
+            android:textStyle="bold"
+            android:textColor="#FFD700"
+            android:layout_marginBottom="10dp"
+            android:shadowColor="#000000"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="4"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="EL DESAFÍO DEL SÉPTIMO ARTE"
             android:textSize="14sp"
             android:textColor="#FFD700"
-            android:layout_marginEnd="20dp"/>
+            android:letterSpacing="0.2"
+            android:layout_marginBottom="8dp"/>
+
+        <View
+            android:layout_width="100dp"
+            android:layout_height="2dp"
+            android:background="#DC143C"
+            android:layout_marginBottom="20dp"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="❌ Fallo: -2 pts"
+            android:text="¿Cuánto sabes de cine y series?"
+            android:textSize="18sp"
+            android:textColor="#FFFFFF"
+            android:layout_marginBottom="8dp"
+            android:textAlignment="center"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="10 preguntas · Películas · Series · Actores"
             android:textSize="14sp"
-            android:textColor="#FF6B6B"/>
+            android:textColor="#AAAAAA"
+            android:layout_marginBottom="40dp"
+            android:textAlignment="center"/>
+
+        <Button
+            android:id="@+id/btnStartQuiz"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#DC143C"
+            android:elevation="8dp"
+            android:padding="16dp"
+            android:text="▶ COMENZAR QUIZ"
+            android:textColor="#FFD700"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="30dp"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="⭐ Acierto: +3 pts"
+                android:textSize="14sp"
+                android:textColor="#FFD700"
+                android:layout_marginEnd="20dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="❌ Fallo: -2 pts"
+                android:textSize="14sp"
+                android:textColor="#FF6B6B"/>
+        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>
-

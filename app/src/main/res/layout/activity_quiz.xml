@@ -13,7 +13,7 @@
         android:layout_height="?attr/actionBarSize"
         android:background="#DC143C"
         android:elevation="8dp"
-        app:logo="@mipmap/icon"
+        app:logo="@mipmap/logo_round"
         app:title="CineQuiz"
         app:titleTextColor="#FFD700"
         app:titleMarginStart="8dp"/>
