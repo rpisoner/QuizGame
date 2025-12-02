@@ -2,7 +2,6 @@ package com.example.cinequiz;
 
 import android.content.Intent;
 import android.media.MediaPlayer;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,8 +17,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ArrayAdapter;
 import android.widget.AdapterView;
-import android.widget.VideoView;
-import android.widget.MediaController;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -143,9 +140,6 @@ public class QuizActivity extends AppCompatActivity {
                 break;
             case AUDIO_QUESTION:
                 createAudioQuestion(question);
-                break;
-            case VIDEO_QUESTION:
-                createVideoQuestion(question);
                 break;
         }
     }
@@ -378,41 +372,6 @@ public class QuizActivity extends AppCompatActivity {
         createRadioButtons(question);
     }
 
-    private void createVideoQuestion(Question question) {
-        if (!question.hasQuestionVideo()) return;
-
-        // Crear VideoView
-        VideoView videoView = new VideoView(this);
-
-        LinearLayout.LayoutParams videoParams = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                600 // Altura fija para el video
-        );
-        videoParams.setMargins(16, 16, 16, 16);
-        videoView.setLayoutParams(videoParams);
-        videoView.setBackgroundColor(0xFF000000); // Fondo negro
-
-        // Configurar el video
-        Uri videoUri = Uri.parse("android.resource://" + getPackageName() + "/" + question.getQuestionVideoId());
-        videoView.setVideoURI(videoUri);
-
-        // Agregar controles de media
-        MediaController mediaController = new MediaController(this);
-        mediaController.setAnchorView(videoView);
-        videoView.setMediaController(mediaController);
-
-        // Reproducir automáticamente
-        videoView.start();
-
-        // Hacer el video en loop
-        videoView.setOnCompletionListener(mp -> videoView.start());
-
-        controlContainer.addView(videoView);
-
-        // Agregar las opciones de respuesta con RadioButtons
-        createRadioButtons(question);
-    }
-
     private void stopMediaPlayback() {
         // Detener y liberar MediaPlayer si existe
         if (mediaPlayer != null) {
@@ -421,15 +380,6 @@ public class QuizActivity extends AppCompatActivity {
             }
             mediaPlayer.release();
             mediaPlayer = null;
-        }
-
-        // Detener cualquier VideoView en el contenedor
-        for (int i = 0; i < controlContainer.getChildCount(); i++) {
-            View child = controlContainer.getChildAt(i);
-            if (child instanceof VideoView) {
-                VideoView videoView = (VideoView) child;
-                videoView.stopPlayback();
-            }
         }
     }
 

@@ -76,10 +76,10 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="CineQuiz es una aplicación de trivia sobre películas y series. Pon a prueba tus conocimientos sobre el cine respondiendo 10 preguntas variadas sobre películas, series, actores y curiosidades del mundo del entretenimiento."
-                        android:textSize="15sp"
+                        android:lineSpacingExtra="4dp"
+                        android:text="CineQuiz es una aplicación de trivia sobre películas y series. Pon a prueba tus conocimientos sobre el cine respondiendo 15 preguntas variadas sobre películas, series, actores y curiosidades del mundo del entretenimiento."
                         android:textColor="#FFFFFF"
-                        android:lineSpacingExtra="4dp"/>
+                        android:textSize="15sp" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
